@@ -1,0 +1,4 @@
+C:/Users/piyus/OneDrive/Desktop/Redis/build/CMakeFiles/redis-server.dir
+C:/Users/piyus/OneDrive/Desktop/Redis/build/CMakeFiles/redis-client.dir
+C:/Users/piyus/OneDrive/Desktop/Redis/build/CMakeFiles/edit_cache.dir
+C:/Users/piyus/OneDrive/Desktop/Redis/build/CMakeFiles/rebuild_cache.dir
