@@ -1,5 +1,7 @@
 #include "server.h"
 #include "store.h"
+#include "aof.h"
+#include "stats.h"
 #include "resp_parser.h"
 #include "command_handler.h"
 
@@ -9,16 +11,21 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
-// Declared in main.cpp — shared across all files
 extern Store store;
-CommandHandler handler(store);
+extern AOF aof;
+extern Stats stats;
+CommandHandler handler(store, aof, stats);
 
 void handleClient(SOCKET clientFd) {
-    char buffer[4096];
+    // Track connections
+    stats.totalConnections++;
+    stats.currentConnections++;
 
+    char buffer[4096];
     while (true) {
         memset(buffer, 0, sizeof(buffer));
-        int bytesRead = recv(clientFd, buffer, sizeof(buffer) - 1, 0);
+        int bytesRead = recv(clientFd, buffer,
+                             sizeof(buffer) - 1, 0);
 
         if (bytesRead <= 0) {
             std::cout << "Client disconnected\n";
@@ -26,17 +33,16 @@ void handleClient(SOCKET clientFd) {
         }
 
         std::string raw(buffer, bytesRead);
-
-        // Step 1 — Parse raw RESP into tokens
         std::vector<std::string> tokens = parseRESP(raw);
-
-        // Step 2 — Handle command and get response
         std::string response = handler.handle(tokens);
 
-        // Step 3 — Send response back
+        // Count every command
+        stats.totalCommands++;
+
         send(clientFd, response.c_str(), response.size(), 0);
     }
 
+    stats.currentConnections--;
     closesocket(clientFd);
 }
 
@@ -63,8 +69,9 @@ void startServer(int port) {
     addr.sin_port = htons(port);
     addr.sin_addr.s_addr = INADDR_ANY;
 
-    if (bind(serverFd, (struct sockaddr*)&addr, sizeof(addr)) == SOCKET_ERROR) {
-        std::cerr << "Failed to bind to port " << port << "\n";
+    if (bind(serverFd, (struct sockaddr*)&addr,
+             sizeof(addr)) == SOCKET_ERROR) {
+        std::cerr << "Failed to bind\n";
         return;
     }
 
@@ -84,10 +91,7 @@ void startServer(int port) {
                                 (struct sockaddr*)&clientAddr,
                                 &clientLen);
 
-        if (clientFd == INVALID_SOCKET) {
-            std::cerr << "Failed to accept\n";
-            continue;
-        }
+        if (clientFd == INVALID_SOCKET) continue;
 
         std::cout << "New client connected!\n";
         std::thread t(handleClient, clientFd);

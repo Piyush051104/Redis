@@ -1,0 +1,14 @@
+SET name Piyush
+SET age 21
+SET city Jamshedpur
+EXPIRE age 30
+RPUSH fruits apple
+RPUSH fruits banana
+RPUSH fruits mango
+LPOP fruits
+SADD languages cpp
+SADD languages python
+SADD languages cpp
+HSET user name Piyush
+HSET user age 21
+SET name Piyush

@@ -165,6 +165,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/aof.obj: src/aof.cpp.obj
+.PHONY : src/aof.obj
+
+# target to build an object file
+src/aof.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/aof.cpp.obj
+.PHONY : src/aof.cpp.obj
+
+src/aof.i: src/aof.cpp.i
+.PHONY : src/aof.i
+
+# target to preprocess a source file
+src/aof.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/aof.cpp.i
+.PHONY : src/aof.cpp.i
+
+src/aof.s: src/aof.cpp.s
+.PHONY : src/aof.s
+
+# target to generate assembly for a file
+src/aof.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/aof.cpp.s
+.PHONY : src/aof.cpp.s
+
 src/client.obj: src/client.cpp.obj
 .PHONY : src/client.obj
 
@@ -213,6 +237,30 @@ src/command_handler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/command_handler.cpp.s
 .PHONY : src/command_handler.cpp.s
 
+src/data_types.obj: src/data_types.cpp.obj
+.PHONY : src/data_types.obj
+
+# target to build an object file
+src/data_types.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/data_types.cpp.obj
+.PHONY : src/data_types.cpp.obj
+
+src/data_types.i: src/data_types.cpp.i
+.PHONY : src/data_types.i
+
+# target to preprocess a source file
+src/data_types.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/data_types.cpp.i
+.PHONY : src/data_types.cpp.i
+
+src/data_types.s: src/data_types.cpp.s
+.PHONY : src/data_types.s
+
+# target to generate assembly for a file
+src/data_types.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/data_types.cpp.s
+.PHONY : src/data_types.cpp.s
+
 src/expiry_manager.obj: src/expiry_manager.cpp.obj
 .PHONY : src/expiry_manager.obj
 
@@ -236,6 +284,30 @@ src/expiry_manager.s: src/expiry_manager.cpp.s
 src/expiry_manager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/expiry_manager.cpp.s
 .PHONY : src/expiry_manager.cpp.s
+
+src/lru.obj: src/lru.cpp.obj
+.PHONY : src/lru.obj
+
+# target to build an object file
+src/lru.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/lru.cpp.obj
+.PHONY : src/lru.cpp.obj
+
+src/lru.i: src/lru.cpp.i
+.PHONY : src/lru.i
+
+# target to preprocess a source file
+src/lru.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/lru.cpp.i
+.PHONY : src/lru.cpp.i
+
+src/lru.s: src/lru.cpp.s
+.PHONY : src/lru.s
+
+# target to generate assembly for a file
+src/lru.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/lru.cpp.s
+.PHONY : src/lru.cpp.s
 
 src/resp_parser.obj: src/resp_parser.cpp.obj
 .PHONY : src/resp_parser.obj
@@ -285,6 +357,30 @@ src/server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/server.cpp.s
 .PHONY : src/server.cpp.s
 
+src/stats.obj: src/stats.cpp.obj
+.PHONY : src/stats.obj
+
+# target to build an object file
+src/stats.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/stats.cpp.obj
+.PHONY : src/stats.cpp.obj
+
+src/stats.i: src/stats.cpp.i
+.PHONY : src/stats.i
+
+# target to preprocess a source file
+src/stats.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/stats.cpp.i
+.PHONY : src/stats.cpp.i
+
+src/stats.s: src/stats.cpp.s
+.PHONY : src/stats.s
+
+# target to generate assembly for a file
+src/stats.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/stats.cpp.s
+.PHONY : src/stats.cpp.s
+
 src/store.obj: src/store.cpp.obj
 .PHONY : src/store.obj
 
@@ -322,21 +418,33 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/aof.obj
+	@echo ... src/aof.i
+	@echo ... src/aof.s
 	@echo ... src/client.obj
 	@echo ... src/client.i
 	@echo ... src/client.s
 	@echo ... src/command_handler.obj
 	@echo ... src/command_handler.i
 	@echo ... src/command_handler.s
+	@echo ... src/data_types.obj
+	@echo ... src/data_types.i
+	@echo ... src/data_types.s
 	@echo ... src/expiry_manager.obj
 	@echo ... src/expiry_manager.i
 	@echo ... src/expiry_manager.s
+	@echo ... src/lru.obj
+	@echo ... src/lru.i
+	@echo ... src/lru.s
 	@echo ... src/resp_parser.obj
 	@echo ... src/resp_parser.i
 	@echo ... src/resp_parser.s
 	@echo ... src/server.obj
 	@echo ... src/server.i
 	@echo ... src/server.s
+	@echo ... src/stats.obj
+	@echo ... src/stats.i
+	@echo ... src/stats.s
 	@echo ... src/store.obj
 	@echo ... src/store.i
 	@echo ... src/store.s

@@ -145,6 +145,11 @@ CMakeFiles/redis-server.dir/src/store.cpp.obj: \
  C:/msys64/mingw64/include/c++/15.1.0/typeinfo \
  C:/msys64/mingw64/include/c++/15.1.0/bits/nested_exception.h \
  C:/msys64/mingw64/include/c++/15.1.0/chrono \
+ C:/Users/piyus/OneDrive/Desktop/Redis/include/lru.h \
+ C:/msys64/mingw64/include/c++/15.1.0/list \
+ C:/msys64/mingw64/include/c++/15.1.0/bits/stl_list.h \
+ C:/msys64/mingw64/include/c++/15.1.0/bits/allocated_ptr.h \
+ C:/msys64/mingw64/include/c++/15.1.0/bits/list.tcc \
  C:/msys64/mingw64/include/c++/15.1.0/mutex \
  C:/msys64/mingw64/include/c++/15.1.0/bits/unique_lock.h \
  C:/msys64/mingw64/include/c++/15.1.0/ext/atomicity.h \
