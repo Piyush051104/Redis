@@ -141,54 +141,6 @@ redis-client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-client.dir\build.make CMakeFiles/redis-client.dir/build
 .PHONY : redis-client/fast
 
-client.obj: client.cpp.obj
-.PHONY : client.obj
-
-# target to build an object file
-client.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-client.dir\build.make CMakeFiles/redis-client.dir/client.cpp.obj
-.PHONY : client.cpp.obj
-
-client.i: client.cpp.i
-.PHONY : client.i
-
-# target to preprocess a source file
-client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-client.dir\build.make CMakeFiles/redis-client.dir/client.cpp.i
-.PHONY : client.cpp.i
-
-client.s: client.cpp.s
-.PHONY : client.s
-
-# target to generate assembly for a file
-client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-client.dir\build.make CMakeFiles/redis-client.dir/client.cpp.s
-.PHONY : client.cpp.s
-
-command_handler.obj: command_handler.cpp.obj
-.PHONY : command_handler.obj
-
-# target to build an object file
-command_handler.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/command_handler.cpp.obj
-.PHONY : command_handler.cpp.obj
-
-command_handler.i: command_handler.cpp.i
-.PHONY : command_handler.i
-
-# target to preprocess a source file
-command_handler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/command_handler.cpp.i
-.PHONY : command_handler.cpp.i
-
-command_handler.s: command_handler.cpp.s
-.PHONY : command_handler.s
-
-# target to generate assembly for a file
-command_handler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/command_handler.cpp.s
-.PHONY : command_handler.cpp.s
-
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -213,77 +165,149 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-resp_parser.obj: resp_parser.cpp.obj
-.PHONY : resp_parser.obj
+src/client.obj: src/client.cpp.obj
+.PHONY : src/client.obj
 
 # target to build an object file
-resp_parser.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/resp_parser.cpp.obj
-.PHONY : resp_parser.cpp.obj
+src/client.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-client.dir\build.make CMakeFiles/redis-client.dir/src/client.cpp.obj
+.PHONY : src/client.cpp.obj
 
-resp_parser.i: resp_parser.cpp.i
-.PHONY : resp_parser.i
+src/client.i: src/client.cpp.i
+.PHONY : src/client.i
 
 # target to preprocess a source file
-resp_parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/resp_parser.cpp.i
-.PHONY : resp_parser.cpp.i
+src/client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-client.dir\build.make CMakeFiles/redis-client.dir/src/client.cpp.i
+.PHONY : src/client.cpp.i
 
-resp_parser.s: resp_parser.cpp.s
-.PHONY : resp_parser.s
+src/client.s: src/client.cpp.s
+.PHONY : src/client.s
 
 # target to generate assembly for a file
-resp_parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/resp_parser.cpp.s
-.PHONY : resp_parser.cpp.s
+src/client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-client.dir\build.make CMakeFiles/redis-client.dir/src/client.cpp.s
+.PHONY : src/client.cpp.s
 
-server.obj: server.cpp.obj
-.PHONY : server.obj
+src/command_handler.obj: src/command_handler.cpp.obj
+.PHONY : src/command_handler.obj
 
 # target to build an object file
-server.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/server.cpp.obj
-.PHONY : server.cpp.obj
+src/command_handler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/command_handler.cpp.obj
+.PHONY : src/command_handler.cpp.obj
 
-server.i: server.cpp.i
-.PHONY : server.i
+src/command_handler.i: src/command_handler.cpp.i
+.PHONY : src/command_handler.i
 
 # target to preprocess a source file
-server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/server.cpp.i
-.PHONY : server.cpp.i
+src/command_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/command_handler.cpp.i
+.PHONY : src/command_handler.cpp.i
 
-server.s: server.cpp.s
-.PHONY : server.s
+src/command_handler.s: src/command_handler.cpp.s
+.PHONY : src/command_handler.s
 
 # target to generate assembly for a file
-server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/server.cpp.s
-.PHONY : server.cpp.s
+src/command_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/command_handler.cpp.s
+.PHONY : src/command_handler.cpp.s
 
-store.obj: store.cpp.obj
-.PHONY : store.obj
+src/expiry_manager.obj: src/expiry_manager.cpp.obj
+.PHONY : src/expiry_manager.obj
 
 # target to build an object file
-store.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/store.cpp.obj
-.PHONY : store.cpp.obj
+src/expiry_manager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj
+.PHONY : src/expiry_manager.cpp.obj
 
-store.i: store.cpp.i
-.PHONY : store.i
+src/expiry_manager.i: src/expiry_manager.cpp.i
+.PHONY : src/expiry_manager.i
 
 # target to preprocess a source file
-store.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/store.cpp.i
-.PHONY : store.cpp.i
+src/expiry_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/expiry_manager.cpp.i
+.PHONY : src/expiry_manager.cpp.i
 
-store.s: store.cpp.s
-.PHONY : store.s
+src/expiry_manager.s: src/expiry_manager.cpp.s
+.PHONY : src/expiry_manager.s
 
 # target to generate assembly for a file
-store.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/store.cpp.s
-.PHONY : store.cpp.s
+src/expiry_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/expiry_manager.cpp.s
+.PHONY : src/expiry_manager.cpp.s
+
+src/resp_parser.obj: src/resp_parser.cpp.obj
+.PHONY : src/resp_parser.obj
+
+# target to build an object file
+src/resp_parser.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj
+.PHONY : src/resp_parser.cpp.obj
+
+src/resp_parser.i: src/resp_parser.cpp.i
+.PHONY : src/resp_parser.i
+
+# target to preprocess a source file
+src/resp_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/resp_parser.cpp.i
+.PHONY : src/resp_parser.cpp.i
+
+src/resp_parser.s: src/resp_parser.cpp.s
+.PHONY : src/resp_parser.s
+
+# target to generate assembly for a file
+src/resp_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/resp_parser.cpp.s
+.PHONY : src/resp_parser.cpp.s
+
+src/server.obj: src/server.cpp.obj
+.PHONY : src/server.obj
+
+# target to build an object file
+src/server.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/server.cpp.obj
+.PHONY : src/server.cpp.obj
+
+src/server.i: src/server.cpp.i
+.PHONY : src/server.i
+
+# target to preprocess a source file
+src/server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/server.cpp.i
+.PHONY : src/server.cpp.i
+
+src/server.s: src/server.cpp.s
+.PHONY : src/server.s
+
+# target to generate assembly for a file
+src/server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/server.cpp.s
+.PHONY : src/server.cpp.s
+
+src/store.obj: src/store.cpp.obj
+.PHONY : src/store.obj
+
+# target to build an object file
+src/store.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/store.cpp.obj
+.PHONY : src/store.cpp.obj
+
+src/store.i: src/store.cpp.i
+.PHONY : src/store.i
+
+# target to preprocess a source file
+src/store.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/store.cpp.i
+.PHONY : src/store.cpp.i
+
+src/store.s: src/store.cpp.s
+.PHONY : src/store.s
+
+# target to generate assembly for a file
+src/store.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\redis-server.dir\build.make CMakeFiles/redis-server.dir/src/store.cpp.s
+.PHONY : src/store.cpp.s
 
 # Help Target
 help:
@@ -295,24 +319,27 @@ help:
 	@echo ... rebuild_cache
 	@echo ... redis-client
 	@echo ... redis-server
-	@echo ... client.obj
-	@echo ... client.i
-	@echo ... client.s
-	@echo ... command_handler.obj
-	@echo ... command_handler.i
-	@echo ... command_handler.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... resp_parser.obj
-	@echo ... resp_parser.i
-	@echo ... resp_parser.s
-	@echo ... server.obj
-	@echo ... server.i
-	@echo ... server.s
-	@echo ... store.obj
-	@echo ... store.i
-	@echo ... store.s
+	@echo ... src/client.obj
+	@echo ... src/client.i
+	@echo ... src/client.s
+	@echo ... src/command_handler.obj
+	@echo ... src/command_handler.i
+	@echo ... src/command_handler.s
+	@echo ... src/expiry_manager.obj
+	@echo ... src/expiry_manager.i
+	@echo ... src/expiry_manager.s
+	@echo ... src/resp_parser.obj
+	@echo ... src/resp_parser.i
+	@echo ... src/resp_parser.s
+	@echo ... src/server.obj
+	@echo ... src/server.i
+	@echo ... src/server.s
+	@echo ... src/store.obj
+	@echo ... src/store.i
+	@echo ... src/store.s
 .PHONY : help
 
 

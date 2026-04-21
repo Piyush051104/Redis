@@ -9,8 +9,8 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
-// Global store and handler shared across all threads
-Store store;
+// Declared in main.cpp — shared across all files
+extern Store store;
 CommandHandler handler(store);
 
 void handleClient(SOCKET clientFd) {

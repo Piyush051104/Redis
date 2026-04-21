@@ -1,6 +1,6 @@
-CMakeFiles/redis-server.dir/resp_parser.cpp.obj: \
- C:\Users\piyus\OneDrive\Desktop\Redis\resp_parser.cpp \
- C:\Users\piyus\OneDrive\Desktop\Redis\resp_parser.h \
+CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj: \
+ C:\Users\piyus\OneDrive\Desktop\Redis\src\resp_parser.cpp \
+ C:/Users/piyus/OneDrive/Desktop/Redis/include/resp_parser.h \
  C:/msys64/mingw64/include/c++/15.1.0/string \
  C:/msys64/mingw64/include/c++/15.1.0/bits/requires_hosted.h \
  C:/msys64/mingw64/include/c++/15.1.0/x86_64-w64-mingw32/bits/c++config.h \

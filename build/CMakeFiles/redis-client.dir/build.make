@@ -71,28 +71,29 @@ include CMakeFiles/redis-client.dir/flags.make
 CMakeFiles/redis-client.dir/codegen:
 .PHONY : CMakeFiles/redis-client.dir/codegen
 
-CMakeFiles/redis-client.dir/client.cpp.obj: CMakeFiles/redis-client.dir/flags.make
-CMakeFiles/redis-client.dir/client.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/client.cpp
-CMakeFiles/redis-client.dir/client.cpp.obj: CMakeFiles/redis-client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/redis-client.dir/client.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-client.dir/client.cpp.obj -MF CMakeFiles\redis-client.dir\client.cpp.obj.d -o CMakeFiles\redis-client.dir\client.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\client.cpp
+CMakeFiles/redis-client.dir/src/client.cpp.obj: CMakeFiles/redis-client.dir/flags.make
+CMakeFiles/redis-client.dir/src/client.cpp.obj: CMakeFiles/redis-client.dir/includes_CXX.rsp
+CMakeFiles/redis-client.dir/src/client.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/src/client.cpp
+CMakeFiles/redis-client.dir/src/client.cpp.obj: CMakeFiles/redis-client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/redis-client.dir/src/client.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-client.dir/src/client.cpp.obj -MF CMakeFiles\redis-client.dir\src\client.cpp.obj.d -o CMakeFiles\redis-client.dir\src\client.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\src\client.cpp
 
-CMakeFiles/redis-client.dir/client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-client.dir/client.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\client.cpp > CMakeFiles\redis-client.dir\client.cpp.i
+CMakeFiles/redis-client.dir/src/client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-client.dir/src/client.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\src\client.cpp > CMakeFiles\redis-client.dir\src\client.cpp.i
 
-CMakeFiles/redis-client.dir/client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-client.dir/client.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\client.cpp -o CMakeFiles\redis-client.dir\client.cpp.s
+CMakeFiles/redis-client.dir/src/client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-client.dir/src/client.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\src\client.cpp -o CMakeFiles\redis-client.dir\src\client.cpp.s
 
 # Object files for target redis-client
 redis__client_OBJECTS = \
-"CMakeFiles/redis-client.dir/client.cpp.obj"
+"CMakeFiles/redis-client.dir/src/client.cpp.obj"
 
 # External object files for target redis-client
 redis__client_EXTERNAL_OBJECTS =
 
-redis-client.exe: CMakeFiles/redis-client.dir/client.cpp.obj
+redis-client.exe: CMakeFiles/redis-client.dir/src/client.cpp.obj
 redis-client.exe: CMakeFiles/redis-client.dir/build.make
 redis-client.exe: CMakeFiles/redis-client.dir/linkLibs.rsp
 redis-client.exe: CMakeFiles/redis-client.dir/objects1.rsp

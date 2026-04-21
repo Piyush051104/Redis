@@ -1,6 +1,6 @@
-CMakeFiles/redis-server.dir/server.cpp.obj: \
- C:\Users\piyus\OneDrive\Desktop\Redis\server.cpp \
- C:\Users\piyus\OneDrive\Desktop\Redis\server.h \
+CMakeFiles/redis-server.dir/src/server.cpp.obj: \
+ C:\Users\piyus\OneDrive\Desktop\Redis\src\server.cpp \
+ C:/Users/piyus/OneDrive/Desktop/Redis/include/server.h \
  C:/msys64/mingw64/include/winsock2.h \
  C:/msys64/mingw64/include/_mingw_unicode.h \
  C:/msys64/mingw64/include/windows.h C:/msys64/mingw64/include/_mingw.h \
@@ -261,7 +261,7 @@ CMakeFiles/redis-server.dir/server.cpp.obj: \
  C:/msys64/mingw64/include/ws2def.h \
  C:/msys64/mingw64/include/psdk_inc/_wsa_errnos.h \
  C:/msys64/mingw64/include/qos.h \
- C:\Users\piyus\OneDrive\Desktop\Redis\store.h \
+ C:/Users/piyus/OneDrive/Desktop/Redis/include/store.h \
  C:/msys64/mingw64/include/c++/15.1.0/string \
  C:/msys64/mingw64/include/c++/15.1.0/bits/requires_hosted.h \
  C:/msys64/mingw64/include/c++/15.1.0/bits/stringfwd.h \
@@ -378,8 +378,9 @@ CMakeFiles/redis-server.dir/server.cpp.obj: \
  C:/msys64/mingw64/include/c++/15.1.0/bits/cxxabi_init_exception.h \
  C:/msys64/mingw64/include/c++/15.1.0/typeinfo \
  C:/msys64/mingw64/include/c++/15.1.0/bits/nested_exception.h \
- C:\Users\piyus\OneDrive\Desktop\Redis\resp_parser.h \
- C:\Users\piyus\OneDrive\Desktop\Redis\command_handler.h \
+ C:/msys64/mingw64/include/c++/15.1.0/chrono \
+ C:/Users/piyus/OneDrive/Desktop/Redis/include/resp_parser.h \
+ C:/Users/piyus/OneDrive/Desktop/Redis/include/command_handler.h \
  C:/msys64/mingw64/include/c++/15.1.0/iostream \
  C:/msys64/mingw64/include/c++/15.1.0/ostream \
  C:/msys64/mingw64/include/c++/15.1.0/bits/ostream.h \

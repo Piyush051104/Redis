@@ -72,6 +72,7 @@ CMakeFiles/redis-server.dir/codegen:
 .PHONY : CMakeFiles/redis-server.dir/codegen
 
 CMakeFiles/redis-server.dir/main.cpp.obj: CMakeFiles/redis-server.dir/flags.make
+CMakeFiles/redis-server.dir/main.cpp.obj: CMakeFiles/redis-server.dir/includes_CXX.rsp
 CMakeFiles/redis-server.dir/main.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/main.cpp
 CMakeFiles/redis-server.dir/main.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/redis-server.dir/main.cpp.obj"
@@ -85,83 +86,104 @@ CMakeFiles/redis-server.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/main.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\main.cpp -o CMakeFiles\redis-server.dir\main.cpp.s
 
-CMakeFiles/redis-server.dir/server.cpp.obj: CMakeFiles/redis-server.dir/flags.make
-CMakeFiles/redis-server.dir/server.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/server.cpp
-CMakeFiles/redis-server.dir/server.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/redis-server.dir/server.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/server.cpp.obj -MF CMakeFiles\redis-server.dir\server.cpp.obj.d -o CMakeFiles\redis-server.dir\server.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\server.cpp
+CMakeFiles/redis-server.dir/src/server.cpp.obj: CMakeFiles/redis-server.dir/flags.make
+CMakeFiles/redis-server.dir/src/server.cpp.obj: CMakeFiles/redis-server.dir/includes_CXX.rsp
+CMakeFiles/redis-server.dir/src/server.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/src/server.cpp
+CMakeFiles/redis-server.dir/src/server.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/redis-server.dir/src/server.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/src/server.cpp.obj -MF CMakeFiles\redis-server.dir\src\server.cpp.obj.d -o CMakeFiles\redis-server.dir\src\server.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\src\server.cpp
 
-CMakeFiles/redis-server.dir/server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/server.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\server.cpp > CMakeFiles\redis-server.dir\server.cpp.i
+CMakeFiles/redis-server.dir/src/server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/src/server.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\src\server.cpp > CMakeFiles\redis-server.dir\src\server.cpp.i
 
-CMakeFiles/redis-server.dir/server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/server.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\server.cpp -o CMakeFiles\redis-server.dir\server.cpp.s
+CMakeFiles/redis-server.dir/src/server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/src/server.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\src\server.cpp -o CMakeFiles\redis-server.dir\src\server.cpp.s
 
-CMakeFiles/redis-server.dir/store.cpp.obj: CMakeFiles/redis-server.dir/flags.make
-CMakeFiles/redis-server.dir/store.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/store.cpp
-CMakeFiles/redis-server.dir/store.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/redis-server.dir/store.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/store.cpp.obj -MF CMakeFiles\redis-server.dir\store.cpp.obj.d -o CMakeFiles\redis-server.dir\store.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\store.cpp
+CMakeFiles/redis-server.dir/src/store.cpp.obj: CMakeFiles/redis-server.dir/flags.make
+CMakeFiles/redis-server.dir/src/store.cpp.obj: CMakeFiles/redis-server.dir/includes_CXX.rsp
+CMakeFiles/redis-server.dir/src/store.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/src/store.cpp
+CMakeFiles/redis-server.dir/src/store.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/redis-server.dir/src/store.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/src/store.cpp.obj -MF CMakeFiles\redis-server.dir\src\store.cpp.obj.d -o CMakeFiles\redis-server.dir\src\store.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\src\store.cpp
 
-CMakeFiles/redis-server.dir/store.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/store.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\store.cpp > CMakeFiles\redis-server.dir\store.cpp.i
+CMakeFiles/redis-server.dir/src/store.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/src/store.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\src\store.cpp > CMakeFiles\redis-server.dir\src\store.cpp.i
 
-CMakeFiles/redis-server.dir/store.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/store.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\store.cpp -o CMakeFiles\redis-server.dir\store.cpp.s
+CMakeFiles/redis-server.dir/src/store.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/src/store.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\src\store.cpp -o CMakeFiles\redis-server.dir\src\store.cpp.s
 
-CMakeFiles/redis-server.dir/resp_parser.cpp.obj: CMakeFiles/redis-server.dir/flags.make
-CMakeFiles/redis-server.dir/resp_parser.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/resp_parser.cpp
-CMakeFiles/redis-server.dir/resp_parser.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/redis-server.dir/resp_parser.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/resp_parser.cpp.obj -MF CMakeFiles\redis-server.dir\resp_parser.cpp.obj.d -o CMakeFiles\redis-server.dir\resp_parser.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\resp_parser.cpp
+CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj: CMakeFiles/redis-server.dir/flags.make
+CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj: CMakeFiles/redis-server.dir/includes_CXX.rsp
+CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/src/resp_parser.cpp
+CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj -MF CMakeFiles\redis-server.dir\src\resp_parser.cpp.obj.d -o CMakeFiles\redis-server.dir\src\resp_parser.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\src\resp_parser.cpp
 
-CMakeFiles/redis-server.dir/resp_parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/resp_parser.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\resp_parser.cpp > CMakeFiles\redis-server.dir\resp_parser.cpp.i
+CMakeFiles/redis-server.dir/src/resp_parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/src/resp_parser.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\src\resp_parser.cpp > CMakeFiles\redis-server.dir\src\resp_parser.cpp.i
 
-CMakeFiles/redis-server.dir/resp_parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/resp_parser.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\resp_parser.cpp -o CMakeFiles\redis-server.dir\resp_parser.cpp.s
+CMakeFiles/redis-server.dir/src/resp_parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/src/resp_parser.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\src\resp_parser.cpp -o CMakeFiles\redis-server.dir\src\resp_parser.cpp.s
 
-CMakeFiles/redis-server.dir/command_handler.cpp.obj: CMakeFiles/redis-server.dir/flags.make
-CMakeFiles/redis-server.dir/command_handler.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/command_handler.cpp
-CMakeFiles/redis-server.dir/command_handler.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/redis-server.dir/command_handler.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/command_handler.cpp.obj -MF CMakeFiles\redis-server.dir\command_handler.cpp.obj.d -o CMakeFiles\redis-server.dir\command_handler.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\command_handler.cpp
+CMakeFiles/redis-server.dir/src/command_handler.cpp.obj: CMakeFiles/redis-server.dir/flags.make
+CMakeFiles/redis-server.dir/src/command_handler.cpp.obj: CMakeFiles/redis-server.dir/includes_CXX.rsp
+CMakeFiles/redis-server.dir/src/command_handler.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/src/command_handler.cpp
+CMakeFiles/redis-server.dir/src/command_handler.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/redis-server.dir/src/command_handler.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/src/command_handler.cpp.obj -MF CMakeFiles\redis-server.dir\src\command_handler.cpp.obj.d -o CMakeFiles\redis-server.dir\src\command_handler.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\src\command_handler.cpp
 
-CMakeFiles/redis-server.dir/command_handler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/command_handler.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\command_handler.cpp > CMakeFiles\redis-server.dir\command_handler.cpp.i
+CMakeFiles/redis-server.dir/src/command_handler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/src/command_handler.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\src\command_handler.cpp > CMakeFiles\redis-server.dir\src\command_handler.cpp.i
 
-CMakeFiles/redis-server.dir/command_handler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/command_handler.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\command_handler.cpp -o CMakeFiles\redis-server.dir\command_handler.cpp.s
+CMakeFiles/redis-server.dir/src/command_handler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/src/command_handler.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\src\command_handler.cpp -o CMakeFiles\redis-server.dir\src\command_handler.cpp.s
+
+CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj: CMakeFiles/redis-server.dir/flags.make
+CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj: CMakeFiles/redis-server.dir/includes_CXX.rsp
+CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj: C:/Users/piyus/OneDrive/Desktop/Redis/src/expiry_manager.cpp
+CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj: CMakeFiles/redis-server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj -MF CMakeFiles\redis-server.dir\src\expiry_manager.cpp.obj.d -o CMakeFiles\redis-server.dir\src\expiry_manager.cpp.obj -c C:\Users\piyus\OneDrive\Desktop\Redis\src\expiry_manager.cpp
+
+CMakeFiles/redis-server.dir/src/expiry_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/redis-server.dir/src/expiry_manager.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\piyus\OneDrive\Desktop\Redis\src\expiry_manager.cpp > CMakeFiles\redis-server.dir\src\expiry_manager.cpp.i
+
+CMakeFiles/redis-server.dir/src/expiry_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/redis-server.dir/src/expiry_manager.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\piyus\OneDrive\Desktop\Redis\src\expiry_manager.cpp -o CMakeFiles\redis-server.dir\src\expiry_manager.cpp.s
 
 # Object files for target redis-server
 redis__server_OBJECTS = \
 "CMakeFiles/redis-server.dir/main.cpp.obj" \
-"CMakeFiles/redis-server.dir/server.cpp.obj" \
-"CMakeFiles/redis-server.dir/store.cpp.obj" \
-"CMakeFiles/redis-server.dir/resp_parser.cpp.obj" \
-"CMakeFiles/redis-server.dir/command_handler.cpp.obj"
+"CMakeFiles/redis-server.dir/src/server.cpp.obj" \
+"CMakeFiles/redis-server.dir/src/store.cpp.obj" \
+"CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj" \
+"CMakeFiles/redis-server.dir/src/command_handler.cpp.obj" \
+"CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj"
 
 # External object files for target redis-server
 redis__server_EXTERNAL_OBJECTS =
 
 redis-server.exe: CMakeFiles/redis-server.dir/main.cpp.obj
-redis-server.exe: CMakeFiles/redis-server.dir/server.cpp.obj
-redis-server.exe: CMakeFiles/redis-server.dir/store.cpp.obj
-redis-server.exe: CMakeFiles/redis-server.dir/resp_parser.cpp.obj
-redis-server.exe: CMakeFiles/redis-server.dir/command_handler.cpp.obj
+redis-server.exe: CMakeFiles/redis-server.dir/src/server.cpp.obj
+redis-server.exe: CMakeFiles/redis-server.dir/src/store.cpp.obj
+redis-server.exe: CMakeFiles/redis-server.dir/src/resp_parser.cpp.obj
+redis-server.exe: CMakeFiles/redis-server.dir/src/command_handler.cpp.obj
+redis-server.exe: CMakeFiles/redis-server.dir/src/expiry_manager.cpp.obj
 redis-server.exe: CMakeFiles/redis-server.dir/build.make
 redis-server.exe: CMakeFiles/redis-server.dir/linkLibs.rsp
 redis-server.exe: CMakeFiles/redis-server.dir/objects1.rsp
 redis-server.exe: CMakeFiles/redis-server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable redis-server.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\piyus\OneDrive\Desktop\Redis\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable redis-server.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\redis-server.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

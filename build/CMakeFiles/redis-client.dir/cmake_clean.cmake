@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/redis-client.dir/client.cpp.obj"
-  "CMakeFiles/redis-client.dir/client.cpp.obj.d"
+  "CMakeFiles/redis-client.dir/src/client.cpp.obj"
+  "CMakeFiles/redis-client.dir/src/client.cpp.obj.d"
   "libredis-client.dll.a"
   "redis-client.exe"
   "redis-client.exe.manifest"

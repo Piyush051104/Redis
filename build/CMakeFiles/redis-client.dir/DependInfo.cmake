@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/piyus/OneDrive/Desktop/Redis/client.cpp" "CMakeFiles/redis-client.dir/client.cpp.obj" "gcc" "CMakeFiles/redis-client.dir/client.cpp.obj.d"
+  "C:/Users/piyus/OneDrive/Desktop/Redis/src/client.cpp" "CMakeFiles/redis-client.dir/src/client.cpp.obj" "gcc" "CMakeFiles/redis-client.dir/src/client.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

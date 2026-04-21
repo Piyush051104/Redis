@@ -9,10 +9,7 @@ private:
     Store& store;
 
 public:
-    // Takes a reference to the shared store
     CommandHandler(Store& store);
-
-    // Takes parsed command tokens, returns RESP response
     std::string handle(const std::vector<std::string>& tokens);
 
 private:
@@ -22,8 +19,10 @@ private:
     std::string handleDel(const std::vector<std::string>& tokens);
     std::string handleExists(const std::vector<std::string>& tokens);
     std::string handleKeys();
+    std::string handleExpire(const std::vector<std::string>& tokens);
+    std::string handleTTL(const std::vector<std::string>& tokens);
+    std::string handleSetEx(const std::vector<std::string>& tokens);
 
-    // RESP response helpers
     std::string ok();
     std::string error(const std::string& msg);
     std::string integer(int n);
