@@ -12,3 +12,6 @@ SADD languages cpp
 HSET user name Piyush
 HSET user age 21
 SET name Piyush
+SET name Piyush
+SET age 21
+DEL age

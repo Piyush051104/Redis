@@ -3,18 +3,20 @@
 #include <shared_mutex>
 #include <vector>
 
+using namespace std;
+
 Store::Store(size_t maxKeys) : lru(maxKeys) {}
 
-bool Store::isExpired(const std::string& key) const {
+bool Store::isExpired(const string& key) const {
     auto it = expiry.find(key);
     if (it == expiry.end()) return false;
-    return std::chrono::steady_clock::now() > it->second;
+    return chrono::steady_clock::now() > it->second;
 }
 
-void Store::set(const std::string& key,
-                const std::string& value,
-                std::optional<std::string>* evicted) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+void Store::set(const string& key,
+                const string& value,
+                optional<string>* evicted) {
+    unique_lock<shared_mutex> lock(mutex);
 
     // Insert into LRU — get evicted key if any
     auto evictedKey = lru.insert(key);
@@ -30,33 +32,33 @@ void Store::set(const std::string& key,
     expiry.erase(key);
 }
 
-std::optional<std::string> Store::get(const std::string& key) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+optional<string> Store::get(const string& key) {
+    unique_lock<shared_mutex> lock(mutex);
 
     if (isExpired(key)) {
         data.erase(key);
         expiry.erase(key);
         lru.remove(key);
-        return std::nullopt;
+        return nullopt;
     }
 
     auto it = data.find(key);
-    if (it == data.end()) return std::nullopt;
+    if (it == data.end()) return nullopt;
 
     // Update LRU on access
     lru.access(key);
     return it->second;
 }
 
-bool Store::del(const std::string& key) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+bool Store::del(const string& key) {
+    unique_lock<shared_mutex> lock(mutex);
     expiry.erase(key);
     lru.remove(key);
     return data.erase(key) == 1;
 }
 
-bool Store::exists(const std::string& key) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+bool Store::exists(const string& key) {
+    unique_lock<shared_mutex> lock(mutex);
     if (isExpired(key)) {
         data.erase(key);
         expiry.erase(key);
@@ -66,51 +68,51 @@ bool Store::exists(const std::string& key) {
     return data.find(key) != data.end();
 }
 
-std::vector<std::string> Store::keys() {
-    std::unique_lock<std::shared_mutex> lock(mutex);
-    std::vector<std::string> result;
+vector<string> Store::keys() {
+    unique_lock<shared_mutex> lock(mutex);
+    vector<string> result;
     for (const auto& [key, value] : data) {
         if (!isExpired(key)) result.push_back(key);
     }
     return result;
 }
 
-bool Store::expire(const std::string& key, int seconds) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+bool Store::expire(const string& key, int seconds) {
+    unique_lock<shared_mutex> lock(mutex);
     if (data.find(key) == data.end()) return false;
-    expiry[key] = std::chrono::steady_clock::now()
-                + std::chrono::seconds(seconds);
+    expiry[key] = chrono::steady_clock::now()
+                + chrono::seconds(seconds);
     return true;
 }
 
-int Store::ttl(const std::string& key) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
+int Store::ttl(const string& key) {
+    shared_lock<shared_mutex> lock(mutex);
     if (data.find(key) == data.end()) return -2;
     auto it = expiry.find(key);
     if (it == expiry.end()) return -1;
-    auto remaining = std::chrono::duration_cast
-        <std::chrono::seconds>(
-            it->second - std::chrono::steady_clock::now()
+    auto remaining = chrono::duration_cast
+        <chrono::seconds>(
+            it->second - chrono::steady_clock::now()
         ).count();
     if (remaining <= 0) return -2;
     return (int)remaining;
 }
 
-void Store::setex(const std::string& key,
-                  const std::string& value,
+void Store::setex(const string& key,
+                  const string& value,
                   int seconds) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+    unique_lock<shared_mutex> lock(mutex);
     lru.insert(key);
     data[key] = value;
-    expiry[key] = std::chrono::steady_clock::now()
-                + std::chrono::seconds(seconds);
+    expiry[key] = chrono::steady_clock::now()
+                + chrono::seconds(seconds);
 }
 
 void Store::cleanupExpired() {
-    std::unique_lock<std::shared_mutex> lock(mutex);
-    std::vector<std::string> toDelete;
+    unique_lock<shared_mutex> lock(mutex);
+    vector<string> toDelete;
     for (const auto& [key, expireAt] : expiry) {
-        if (std::chrono::steady_clock::now() > expireAt) {
+        if (chrono::steady_clock::now() > expireAt) {
             toDelete.push_back(key);
         }
     }
@@ -122,6 +124,6 @@ void Store::cleanupExpired() {
 }
 
 size_t Store::keyCount() {
-    std::shared_lock<std::shared_mutex> lock(mutex);
+    shared_lock<shared_mutex> lock(mutex);
     return data.size();
 }

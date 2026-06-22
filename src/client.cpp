@@ -5,13 +5,15 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
+using namespace std;
+
 // Build RESP protocol message from command tokens
 // Example: ["SET", "name", "Piyush"] →
 // "*3\r\n$3\r\nSET\r\n$4\r\nname\r\n$6\r\nPiyush\r\n"
-std::string buildRESP(const std::vector<std::string>& tokens) {
-    std::string resp = "*" + std::to_string(tokens.size()) + "\r\n";
+string buildRESP(const vector<string>& tokens) {
+    string resp = "*" + to_string(tokens.size()) + "\r\n";
     for (const auto& token : tokens) {
-        resp += "$" + std::to_string(token.size()) + "\r\n";
+        resp += "$" + to_string(token.size()) + "\r\n";
         resp += token + "\r\n";
     }
     return resp;
@@ -19,11 +21,11 @@ std::string buildRESP(const std::vector<std::string>& tokens) {
 
 // Parse server response into human readable format
 // Converts RESP response → clean output
-std::string parseResponse(const std::string& response) {
+string parseResponse(const string& response) {
     if (response.empty()) return "(empty)";
 
     char type = response[0];
-    std::string body = response.substr(1);
+    string body = response.substr(1);
 
     // Remove trailing \r\n
     while (!body.empty() &&
@@ -46,13 +48,13 @@ std::string parseResponse(const std::string& response) {
 
         case '$': {
             // Bulk string
-            int len = std::stoi(body);
+            int len = stoi(body);
             if (len == -1) return "(nil)";
 
             // Find the actual string after \r\n
             size_t pos = response.find("\r\n");
-            if (pos == std::string::npos) return "(nil)";
-            std::string value = response.substr(pos + 2);
+            if (pos == string::npos) return "(nil)";
+            string value = response.substr(pos + 2);
 
             // Remove trailing \r\n
             while (!value.empty() &&
@@ -64,18 +66,18 @@ std::string parseResponse(const std::string& response) {
 
         case '*': {
             // Array (for KEYS command)
-            int count = std::stoi(body);
+            int count = stoi(body);
             if (count == 0) return "(empty array)";
 
             // Split response lines
-            std::istringstream ss(response);
-            std::string line;
-            std::vector<std::string> items;
+            istringstream ss(response);
+            string line;
+            vector<string> items;
 
             // Skip first line (*N)
-            std::getline(ss, line);
+            getline(ss, line);
 
-            while (std::getline(ss, line)) {
+            while (getline(ss, line)) {
                 // Remove \r
                 if (!line.empty() && line.back() == '\r') {
                     line.pop_back();
@@ -88,9 +90,9 @@ std::string parseResponse(const std::string& response) {
             }
 
             // Format as numbered list
-            std::string result;
+            string result;
             for (int i = 0; i < (int)items.size(); i++) {
-                result += std::to_string(i + 1) + ") \"" + items[i] + "\"";
+                result += to_string(i + 1) + ") \"" + items[i] + "\"";
                 if (i < (int)items.size() - 1) result += "\n";
             }
             return result;
@@ -105,14 +107,14 @@ int main() {
     // Initialize Winsock
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cerr << "WSAStartup failed\n";
+        cerr << "WSAStartup failed\n";
         return 1;
     }
 
     // Create socket
     SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock == INVALID_SOCKET) {
-        std::cerr << "Failed to create socket\n";
+        cerr << "Failed to create socket\n";
         return 1;
     }
 
@@ -125,22 +127,22 @@ int main() {
 
     if (connect(sock, (struct sockaddr*)&serverAddr,
                 sizeof(serverAddr)) == SOCKET_ERROR) {
-        std::cerr << "Could not connect to server.\n";
-        std::cerr << "Make sure redis-server is running!\n";
+        cerr << "Could not connect to server.\n";
+        cerr << "Make sure redis-server is running!\n";
         return 1;
     }
 
-    std::cout << "Connected to server at 127.0.0.1:6379\n";
+    cout << "Connected to server at 127.0.0.1:6379\n";
 
     char buffer[4096];
-    std::string input;
+    string input;
 
     // Main REPL loop
     // REPL = Read, Evaluate, Print, Loop
     while (true) {
         // Print prompt
-        std::cout << "127.0.0.1:6379> ";
-        std::getline(std::cin, input);
+        cout << "127.0.0.1:6379> ";
+        getline(cin, input);
 
         // Skip empty input
         if (input.empty()) continue;
@@ -148,14 +150,14 @@ int main() {
         // Handle EXIT command locally
         if (input == "EXIT" || input == "exit" ||
             input == "QUIT" || input == "quit") {
-            std::cout << "Bye!\n";
+            cout << "Bye!\n";
             break;
         }
 
         // Split input into tokens
-        std::vector<std::string> tokens;
-        std::istringstream ss(input);
-        std::string token;
+        vector<string> tokens;
+        istringstream ss(input);
+        string token;
         while (ss >> token) {
             tokens.push_back(token);
         }
@@ -163,7 +165,7 @@ int main() {
         if (tokens.empty()) continue;
 
         // Build RESP message
-        std::string resp = buildRESP(tokens);
+        string resp = buildRESP(tokens);
 
         // Send to server
         send(sock, resp.c_str(), resp.size(), 0);
@@ -173,13 +175,13 @@ int main() {
         int bytesRead = recv(sock, buffer, sizeof(buffer) - 1, 0);
 
         if (bytesRead <= 0) {
-            std::cout << "Server disconnected\n";
+            cout << "Server disconnected\n";
             break;
         }
 
         // Parse and print response
-        std::string response(buffer, bytesRead);
-        std::cout << parseResponse(response) << "\n";
+        string response(buffer, bytesRead);
+        cout << parseResponse(response) << "\n";
     }
 
     closesocket(sock);

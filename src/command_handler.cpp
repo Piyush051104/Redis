@@ -1,17 +1,19 @@
 #include "command_handler.h"
 #include <algorithm>
 
+using namespace std;
+
 CommandHandler::CommandHandler(Store& store,
                                AOF& aof,
                                Stats& stats)
     : store(store), aof(aof), stats(stats) {}
 
-std::string CommandHandler::handle(
-        const std::vector<std::string>& tokens) {
+string CommandHandler::handle(
+        const vector<string>& tokens) {
     if (tokens.empty()) return error("empty command");
 
-    std::string cmd = tokens[0];
-    std::transform(cmd.begin(), cmd.end(),
+    string cmd = tokens[0];
+    transform(cmd.begin(), cmd.end(),
                    cmd.begin(), ::toupper);
 
     if (cmd == "PING")      return handlePing();
@@ -45,73 +47,73 @@ std::string CommandHandler::handle(
     return error("unknown command '" + tokens[0] + "'");
 }
 
-// String commands — same as Phase 5
-std::string CommandHandler::handlePing() { return "+PONG\r\n"; }
+// String commands
+string CommandHandler::handlePing() { return "+PONG\r\n"; }
 
-std::string CommandHandler::handleSet(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleSet(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for SET");
-    std::optional<std::string> evicted;
+    optional<string> evicted;
     store.set(t[1], t[2], &evicted);
     if (evicted.has_value()) stats.totalKeysEvicted++;
     aof.append(t);
     return ok();
 }
 
-std::string CommandHandler::handleGet(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleGet(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for GET");
     auto value = store.get(t[1]);
     if (!value.has_value()) return nilResponse();
     return bulkString(value.value());
 }
 
-std::string CommandHandler::handleDel(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleDel(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for DEL");
     bool deleted = store.del(t[1]);
     if (deleted) aof.append(t);
     return integer(deleted ? 1 : 0);
 }
 
-std::string CommandHandler::handleExists(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleExists(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for EXISTS");
     return integer(store.exists(t[1]) ? 1 : 0);
 }
 
-std::string CommandHandler::handleKeys() {
+string CommandHandler::handleKeys() {
     return arrayResponse(store.keys());
 }
 
-std::string CommandHandler::handleExpire(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleExpire(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for EXPIRE");
-    bool result = store.expire(t[1], std::stoi(t[2]));
+    bool result = store.expire(t[1], stoi(t[2]));
     if (result) aof.append(t);
     return integer(result ? 1 : 0);
 }
 
-std::string CommandHandler::handleTTL(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleTTL(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for TTL");
     return integer(store.ttl(t[1]));
 }
 
-std::string CommandHandler::handleSetEx(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleSetEx(
+        const vector<string>& t) {
     if (t.size() < 4) return error("wrong number of arguments for SETEX");
-    store.setex(t[1], t[3], std::stoi(t[2]));
+    store.setex(t[1], t[3], stoi(t[2]));
     aof.append(t);
     return ok();
 }
 
-std::string CommandHandler::handleInfo() {
-    std::string info = stats.infoString(store.keyCount());
+string CommandHandler::handleInfo() {
+    string info = stats.infoString(store.keyCount());
     return bulkString(info);
 }
 
-std::string CommandHandler::handleFlushAll() {
+string CommandHandler::handleFlushAll() {
     // Clear all keys by deleting and recreating AOF
     auto allKeys = store.keys();
     for (const auto& key : allKeys) {
@@ -121,24 +123,24 @@ std::string CommandHandler::handleFlushAll() {
 }
 
 // List commands
-std::string CommandHandler::handleLPush(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleLPush(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for LPUSH");
     int len = listStore.lpush(t[1], t[2]);
     aof.append(t);
     return integer(len);
 }
 
-std::string CommandHandler::handleRPush(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleRPush(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for RPUSH");
     int len = listStore.rpush(t[1], t[2]);
     aof.append(t);
     return integer(len);
 }
 
-std::string CommandHandler::handleLPop(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleLPop(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for LPOP");
     auto val = listStore.lpop(t[1]);
     if (!val.has_value()) return nilResponse();
@@ -146,8 +148,8 @@ std::string CommandHandler::handleLPop(
     return bulkString(val.value());
 }
 
-std::string CommandHandler::handleRPop(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleRPop(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for RPOP");
     auto val = listStore.rpop(t[1]);
     if (!val.has_value()) return nilResponse();
@@ -155,114 +157,114 @@ std::string CommandHandler::handleRPop(
     return bulkString(val.value());
 }
 
-std::string CommandHandler::handleLRange(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleLRange(
+        const vector<string>& t) {
     if (t.size() < 4) return error("wrong number of arguments for LRANGE");
     auto items = listStore.lrange(t[1],
-                                  std::stoi(t[2]),
-                                  std::stoi(t[3]));
+                                  stoi(t[2]),
+                                  stoi(t[3]));
     return arrayResponse(items);
 }
 
-std::string CommandHandler::handleLLen(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleLLen(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for LLEN");
     return integer(listStore.llen(t[1]));
 }
 
 // Set commands
-std::string CommandHandler::handleSAdd(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleSAdd(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for SADD");
     aof.append(t);
     return integer(setStore.sadd(t[1], t[2]));
 }
 
-std::string CommandHandler::handleSRem(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleSRem(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for SREM");
     int result = setStore.srem(t[1], t[2]);
     if (result) aof.append(t);
     return integer(result);
 }
 
-std::string CommandHandler::handleSMembers(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleSMembers(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for SMEMBERS");
     return arrayResponse(setStore.smembers(t[1]));
 }
 
-std::string CommandHandler::handleSIsMember(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleSIsMember(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for SISMEMBER");
     return integer(setStore.sismember(t[1], t[2]) ? 1 : 0);
 }
 
-std::string CommandHandler::handleSCard(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleSCard(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for SCARD");
     return integer(setStore.scard(t[1]));
 }
 
 // Hash commands
-std::string CommandHandler::handleHSet(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleHSet(
+        const vector<string>& t) {
     if (t.size() < 4) return error("wrong number of arguments for HSET");
     hashStore.hset(t[1], t[2], t[3]);
     aof.append(t);
     return ok();
 }
 
-std::string CommandHandler::handleHGet(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleHGet(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for HGET");
     auto val = hashStore.hget(t[1], t[2]);
     if (!val.has_value()) return nilResponse();
     return bulkString(val.value());
 }
 
-std::string CommandHandler::handleHDel(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleHDel(
+        const vector<string>& t) {
     if (t.size() < 3) return error("wrong number of arguments for HDEL");
     bool deleted = hashStore.hdel(t[1], t[2]);
     if (deleted) aof.append(t);
     return integer(deleted ? 1 : 0);
 }
 
-std::string CommandHandler::handleHGetAll(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleHGetAll(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for HGETALL");
     return arrayResponse(hashStore.hgetall(t[1]));
 }
 
-std::string CommandHandler::handleHLen(
-        const std::vector<std::string>& t) {
+string CommandHandler::handleHLen(
+        const vector<string>& t) {
     if (t.size() < 2) return error("wrong number of arguments for HLEN");
     return integer(hashStore.hlen(t[1]));
 }
 
 // RESP helpers
-std::string CommandHandler::ok() { return "+OK\r\n"; }
+string CommandHandler::ok() { return "+OK\r\n"; }
 
-std::string CommandHandler::error(const std::string& msg) {
+string CommandHandler::error(const string& msg) {
     return "-ERR " + msg + "\r\n";
 }
 
-std::string CommandHandler::integer(int n) {
-    return ":" + std::to_string(n) + "\r\n";
+string CommandHandler::integer(int n) {
+    return ":" + to_string(n) + "\r\n";
 }
 
-std::string CommandHandler::bulkString(const std::string& s) {
-    return "$" + std::to_string(s.size()) + "\r\n" + s + "\r\n";
+string CommandHandler::bulkString(const string& s) {
+    return "$" + to_string(s.size()) + "\r\n" + s + "\r\n";
 }
 
-std::string CommandHandler::nilResponse() { return "$-1\r\n"; }
+string CommandHandler::nilResponse() { return "$-1\r\n"; }
 
-std::string CommandHandler::arrayResponse(
-        const std::vector<std::string>& items) {
+string CommandHandler::arrayResponse(
+        const vector<string>& items) {
     if (items.empty()) return "*0\r\n";
-    std::string response = "*" +
-                           std::to_string(items.size()) + "\r\n";
+    string response = "*" +
+                           to_string(items.size()) + "\r\n";
     for (const auto& item : items) {
         response += bulkString(item);
     }

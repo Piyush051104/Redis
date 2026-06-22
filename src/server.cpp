@@ -11,6 +11,8 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
+using namespace std;
+
 extern Store store;
 extern AOF aof;
 extern Stats stats;
@@ -28,13 +30,13 @@ void handleClient(SOCKET clientFd) {
                              sizeof(buffer) - 1, 0);
 
         if (bytesRead <= 0) {
-            std::cout << "Client disconnected\n";
+            cout << "Client disconnected\n";
             break;
         }
 
-        std::string raw(buffer, bytesRead);
-        std::vector<std::string> tokens = parseRESP(raw);
-        std::string response = handler.handle(tokens);
+        string raw(buffer, bytesRead);
+        vector<string> tokens = parseRESP(raw);
+        string response = handler.handle(tokens);
 
         // Count every command
         stats.totalCommands++;
@@ -49,13 +51,13 @@ void handleClient(SOCKET clientFd) {
 void startServer(int port) {
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cerr << "WSAStartup failed\n";
+        cerr << "WSAStartup failed\n";
         return;
     }
 
     SOCKET serverFd = socket(AF_INET, SOCK_STREAM, 0);
     if (serverFd == INVALID_SOCKET) {
-        std::cerr << "Failed to create socket\n";
+        cerr << "Failed to create socket\n";
         return;
     }
 
@@ -71,17 +73,17 @@ void startServer(int port) {
 
     if (bind(serverFd, (struct sockaddr*)&addr,
              sizeof(addr)) == SOCKET_ERROR) {
-        std::cerr << "Failed to bind\n";
+        cerr << "Failed to bind\n";
         return;
     }
 
     if (listen(serverFd, 10) == SOCKET_ERROR) {
-        std::cerr << "Failed to listen\n";
+        cerr << "Failed to listen\n";
         return;
     }
 
-    std::cout << "Server started on port " << port << "\n";
-    std::cout << "Waiting for connections...\n";
+    cout << "Server started on port " << port << "\n";
+    cout << "Waiting for connections...\n";
 
     while (true) {
         struct sockaddr_in clientAddr;
@@ -93,8 +95,8 @@ void startServer(int port) {
 
         if (clientFd == INVALID_SOCKET) continue;
 
-        std::cout << "New client connected!\n";
-        std::thread t(handleClient, clientFd);
+        cout << "New client connected!\n";
+        thread t(handleClient, clientFd);
         t.detach();
     }
 

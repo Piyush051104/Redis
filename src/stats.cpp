@@ -1,18 +1,20 @@
 #include "stats.h"
 #include <sstream>
 
+using namespace std;
+
 Stats::Stats() {
-    startTime = std::chrono::steady_clock::now();
+    startTime = chrono::steady_clock::now();
 }
 
 long long Stats::uptimeSeconds() {
-    auto now = std::chrono::steady_clock::now();
-    return std::chrono::duration_cast<std::chrono::seconds>
+    auto now = chrono::steady_clock::now();
+    return chrono::duration_cast<chrono::seconds>
            (now - startTime).count();
 }
 
-std::string Stats::infoString(size_t keyCount) {
-    std::ostringstream ss;
+string Stats::infoString(size_t keyCount) {
+    ostringstream ss;
     ss << "# Server\r\n";
     ss << "uptime_in_seconds:" << uptimeSeconds() << "\r\n";
     ss << "\r\n";

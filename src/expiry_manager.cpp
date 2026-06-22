@@ -3,6 +3,8 @@
 #include <chrono>
 #include <iostream>
 
+using namespace std;
+
 ExpiryManager::ExpiryManager(Store& store)
     : store(store), running(false) {}
 
@@ -10,11 +12,11 @@ void ExpiryManager::start() {
     running = true;
 
     // Launch background thread
-    std::thread t([this]() {
+    thread t([this]() {
         while (running) {
             // Sleep 100ms between cleanups
-            std::this_thread::sleep_for(
-                std::chrono::milliseconds(100)
+            this_thread::sleep_for(
+                chrono::milliseconds(100)
             );
             // Delete all expired keys
             store.cleanupExpired();
@@ -24,7 +26,7 @@ void ExpiryManager::start() {
     // Detach — runs independently in background
     t.detach();
 
-    std::cout << "Expiry manager started\n";
+    cout << "Expiry manager started\n";
 }
 
 void ExpiryManager::stop() {

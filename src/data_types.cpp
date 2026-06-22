@@ -1,55 +1,57 @@
 #include "data_types.h"
 #include <mutex>
 
+using namespace std;
+
 // ─────────────────────────────────────────
 // LIST STORE IMPLEMENTATION
 // ─────────────────────────────────────────
 
-int ListStore::lpush(const std::string& key,
-                     const std::string& value) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+int ListStore::lpush(const string& key,
+                     const string& value) {
+    unique_lock<shared_mutex> lock(mutex);
     data[key].push_front(value);
     return data[key].size();
 }
 
-int ListStore::rpush(const std::string& key,
-                     const std::string& value) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+int ListStore::rpush(const string& key,
+                     const string& value) {
+    unique_lock<shared_mutex> lock(mutex);
     data[key].push_back(value);
     return data[key].size();
 }
 
-std::optional<std::string> ListStore::lpop(
-        const std::string& key) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+optional<string> ListStore::lpop(
+        const string& key) {
+    unique_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end() || it->second.empty()) {
-        return std::nullopt;
+        return nullopt;
     }
-    std::string val = it->second.front();
+    string val = it->second.front();
     it->second.pop_front();
     // Clean up empty list
     if (it->second.empty()) data.erase(it);
     return val;
 }
 
-std::optional<std::string> ListStore::rpop(
-        const std::string& key) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+optional<string> ListStore::rpop(
+        const string& key) {
+    unique_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end() || it->second.empty()) {
-        return std::nullopt;
+        return nullopt;
     }
-    std::string val = it->second.back();
+    string val = it->second.back();
     it->second.pop_back();
     if (it->second.empty()) data.erase(it);
     return val;
 }
 
-std::vector<std::string> ListStore::lrange(
-        const std::string& key, int start, int end) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
-    std::vector<std::string> result;
+vector<string> ListStore::lrange(
+        const string& key, int start, int end) {
+    shared_lock<shared_mutex> lock(mutex);
+    vector<string> result;
 
     auto it = data.find(key);
     if (it == data.end()) return result;
@@ -58,7 +60,7 @@ std::vector<std::string> ListStore::lrange(
 
     // Handle negative indices like Redis
     // -1 means last element, -2 means second to last
-    if (start < 0) start = std::max(0, size + start);
+    if (start < 0) start = max(0, size + start);
     if (end < 0)   end   = size + end;
     if (end >= size) end = size - 1;
     if (start > end) return result;
@@ -69,8 +71,8 @@ std::vector<std::string> ListStore::lrange(
     return result;
 }
 
-int ListStore::llen(const std::string& key) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
+int ListStore::llen(const string& key) {
+    shared_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end()) return 0;
     return it->second.size();
@@ -80,18 +82,18 @@ int ListStore::llen(const std::string& key) {
 // SET STORE IMPLEMENTATION
 // ─────────────────────────────────────────
 
-int SetStore::sadd(const std::string& key,
-                   const std::string& member) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+int SetStore::sadd(const string& key,
+                   const string& member) {
+    unique_lock<shared_mutex> lock(mutex);
     // insert() returns {iterator, bool}
     // bool = true if inserted, false if already existed
     auto result = data[key].insert(member);
     return result.second ? 1 : 0;
 }
 
-int SetStore::srem(const std::string& key,
-                   const std::string& member) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+int SetStore::srem(const string& key,
+                   const string& member) {
+    unique_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end()) return 0;
     int removed = it->second.erase(member);
@@ -99,10 +101,10 @@ int SetStore::srem(const std::string& key,
     return removed;
 }
 
-std::vector<std::string> SetStore::smembers(
-        const std::string& key) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
-    std::vector<std::string> result;
+vector<string> SetStore::smembers(
+        const string& key) {
+    shared_lock<shared_mutex> lock(mutex);
+    vector<string> result;
     auto it = data.find(key);
     if (it == data.end()) return result;
     for (const auto& m : it->second) {
@@ -111,16 +113,16 @@ std::vector<std::string> SetStore::smembers(
     return result;
 }
 
-bool SetStore::sismember(const std::string& key,
-                         const std::string& member) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
+bool SetStore::sismember(const string& key,
+                         const string& member) {
+    shared_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end()) return false;
     return it->second.count(member) > 0;
 }
 
-int SetStore::scard(const std::string& key) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
+int SetStore::scard(const string& key) {
+    shared_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end()) return 0;
     return it->second.size();
@@ -130,27 +132,27 @@ int SetStore::scard(const std::string& key) {
 // HASH STORE IMPLEMENTATION
 // ─────────────────────────────────────────
 
-void HashStore::hset(const std::string& key,
-                     const std::string& field,
-                     const std::string& value) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+void HashStore::hset(const string& key,
+                     const string& field,
+                     const string& value) {
+    unique_lock<shared_mutex> lock(mutex);
     data[key][field] = value;
 }
 
-std::optional<std::string> HashStore::hget(
-        const std::string& key,
-        const std::string& field) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
+optional<string> HashStore::hget(
+        const string& key,
+        const string& field) {
+    shared_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
-    if (it == data.end()) return std::nullopt;
+    if (it == data.end()) return nullopt;
     auto fit = it->second.find(field);
-    if (fit == it->second.end()) return std::nullopt;
+    if (fit == it->second.end()) return nullopt;
     return fit->second;
 }
 
-bool HashStore::hdel(const std::string& key,
-                     const std::string& field) {
-    std::unique_lock<std::shared_mutex> lock(mutex);
+bool HashStore::hdel(const string& key,
+                     const string& field) {
+    unique_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end()) return false;
     bool deleted = it->second.erase(field) > 0;
@@ -158,10 +160,10 @@ bool HashStore::hdel(const std::string& key,
     return deleted;
 }
 
-std::vector<std::string> HashStore::hgetall(
-        const std::string& key) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
-    std::vector<std::string> result;
+vector<string> HashStore::hgetall(
+        const string& key) {
+    shared_lock<shared_mutex> lock(mutex);
+    vector<string> result;
     auto it = data.find(key);
     if (it == data.end()) return result;
     // Return field, value, field, value...
@@ -172,8 +174,8 @@ std::vector<std::string> HashStore::hgetall(
     return result;
 }
 
-int HashStore::hlen(const std::string& key) {
-    std::shared_lock<std::shared_mutex> lock(mutex);
+int HashStore::hlen(const string& key) {
+    shared_lock<shared_mutex> lock(mutex);
     auto it = data.find(key);
     if (it == data.end()) return 0;
     return it->second.size();

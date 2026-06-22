@@ -2,16 +2,17 @@
 #include <iostream>
 #include <sstream>
 
-AOF::AOF(const std::string& filepath) : filepath(filepath) {
+using namespace std;
+
+AOF::AOF(const string& filepath) : filepath(filepath) {
     // Open file in append mode
     // ios::app = never overwrite, always add to end
     // ios::out = open for writing
-    writeStream.open(filepath,
-                     std::ios::app | std::ios::out);
+    writeStream.open(filepath, ios::app | ios::out);
 
     if (!writeStream.is_open()) {
-        std::cerr << "Failed to open AOF file: "
-                  << filepath << "\n";
+        cerr << "Failed to open AOF file: "
+             << filepath << "\n";
     }
 }
 
@@ -21,7 +22,7 @@ AOF::~AOF() {
     }
 }
 
-void AOF::append(const std::vector<std::string>& tokens) {
+void AOF::append(const vector<string>& tokens) {
     if (!writeStream.is_open()) return;
     if (tokens.empty()) return;
 
@@ -40,25 +41,25 @@ void AOF::append(const std::vector<std::string>& tokens) {
     writeStream.flush();
 }
 
-std::vector<std::vector<std::string>> AOF::load() {
-    std::vector<std::vector<std::string>> commands;
+vector<vector<string>> AOF::load() {
+    vector<vector<string>> commands;
 
     // Open file for reading
-    std::ifstream readStream(filepath);
+    ifstream readStream(filepath);
     if (!readStream.is_open()) {
-        std::cout << "No AOF file found. Starting fresh.\n";
+        cout << "No AOF file found. Starting fresh.\n";
         return commands;
     }
 
-    std::string line;
-    while (std::getline(readStream, line)) {
+    string line;
+    while (getline(readStream, line)) {
         // Skip empty lines
         if (line.empty()) continue;
 
         // Split line into tokens
-        std::vector<std::string> tokens;
-        std::istringstream ss(line);
-        std::string token;
+        vector<string> tokens;
+        istringstream ss(line);
+        string token;
         while (ss >> token) {
             tokens.push_back(token);
         }
@@ -68,12 +69,12 @@ std::vector<std::vector<std::string>> AOF::load() {
         }
     }
 
-    std::cout << "AOF: loaded " << commands.size()
-              << " commands from disk\n";
+    cout << "AOF: loaded " << commands.size()
+         << " commands from disk\n";
     return commands;
 }
 
 bool AOF::exists() {
-    std::ifstream f(filepath);
+    ifstream f(filepath);
     return f.good();
 }
