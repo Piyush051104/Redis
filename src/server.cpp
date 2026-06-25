@@ -16,7 +16,12 @@ using namespace std;
 extern Store store;
 extern AOF aof;
 extern Stats stats;
-CommandHandler handler(store, aof, stats);
+extern ListStore listStore;
+extern SetStore setStore;
+extern HashStore hashStore;
+
+CommandHandler handler(store, aof, stats, listStore, setStore, hashStore);
+
 
 void handleClient(SOCKET clientFd) {
     // Track connections

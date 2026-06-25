@@ -12,12 +12,14 @@ private:
     Store& store;
     AOF& aof;
     Stats& stats;
-    ListStore listStore;
-    SetStore setStore;
-    HashStore hashStore;
+    ListStore& listStore;
+    SetStore& setStore;
+    HashStore& hashStore;
 
 public:
-    CommandHandler(Store& store, AOF& aof, Stats& stats);
+    CommandHandler(Store& store, AOF& aof, Stats& stats,
+                   ListStore& listStore, SetStore& setStore,
+                   HashStore& hashStore);
     std::string handle(const std::vector<std::string>& tokens);
 
 private:

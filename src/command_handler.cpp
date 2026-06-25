@@ -5,8 +5,14 @@ using namespace std;
 
 CommandHandler::CommandHandler(Store& store,
                                AOF& aof,
-                               Stats& stats)
-    : store(store), aof(aof), stats(stats) {}
+                               Stats& stats,
+                               ListStore& listStore,
+                               SetStore& setStore,
+                               HashStore& hashStore)
+    : store(store), aof(aof), stats(stats),
+      listStore(listStore), setStore(setStore),
+      hashStore(hashStore) {}
+
 
 string CommandHandler::handle(
         const vector<string>& tokens) {
