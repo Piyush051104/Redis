@@ -214,12 +214,4 @@ total_keys:1
 
 ---
 
-## 🔮 Future Improvements
-
-- Unify all data types into a single key space using `std::variant` so LRU and TTL work across Lists, Sets, and Hashes
-- Add pub/sub messaging support
-- Implement RDB snapshotting alongside AOF
-- Add cluster support with consistent hashing
-- Cross-platform support (Linux/macOS) using POSIX sockets
-
 
